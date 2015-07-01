@@ -3,6 +3,7 @@ require 'sinatra/activerecord'
 require './models.rb'
 
 set :database,"sqlite3:microblog_db.sqlite3"
+set :sessions, true
 
 get '/sign-up' do
 	erb :sign_up
@@ -17,6 +18,11 @@ post '/sign-up' do
 	else
 		"Not signed up. Check your passwords"
 	end
+end
 
+post 'sign-in' do
+
+	@username = 
+	
 end
 
