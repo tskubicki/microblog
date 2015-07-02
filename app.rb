@@ -1,9 +1,15 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-require './models.rb'
+require './models'
 
 set :database,"sqlite3:microblog_db.sqlite3"
 set :sessions, true
+
+get '/' do
+	@title = "home"
+	@current_page = 'home'
+	erb :home
+end
 
 get '/sign-up' do
 	erb :sign_up
@@ -20,9 +26,9 @@ post '/sign-up' do
 	end
 end
 
-post 'sign-in' do
+# post 'sign-in' do
 
-	@username = 
+# 	@username = 
 	
-end
+# end
 
