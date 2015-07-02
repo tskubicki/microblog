@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/reloader'
 require 'sinatra/activerecord'
 require './models'
 
@@ -12,25 +13,40 @@ get '/' do
 	erb :home
 end
 
-get '/sign-up' do
-	erb :sign_up
+get '/register' do
+	@current_page = 'register'
+	erb :register
 end
 
-post '/sign-up' do
+post '/register' do
 	confirmation = params[:confirm_password]
 	
 	if confirmation == params[:user][:password]
 		@user = User.create(params[:user])
-		"Signed up #{@user.username}"
+		"Registered #{@user.username}"
 	else
 		"Not signed up. Check your passwords"
 	end
 end
 
 
-# post 'sign-in' do
+get '/feed' do
+	"Hello world"
+	@title = 'feed'
+	@current_page = 'feed'
+	erb :feed
+end
 
-# 	@username = 
-	
-# end
+get '/profile' do
+	@current_page = 'profile'
+	erb :profile
+end
+
+get '/create_tweet' do
+	@current_page = 'create_tweet'
+	erb :create_tweet
+end
+
+
+
 
