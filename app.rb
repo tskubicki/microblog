@@ -2,7 +2,8 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './models'
 
-set :database,"sqlite3:microblog_db.sqlite3"
+
+configure(:development) {set :database,"sqlite3:microblog_db.sqlite3"}
 set :sessions, true
 
 get '/' do
@@ -25,6 +26,7 @@ post '/sign-up' do
 		"Not signed up. Check your passwords"
 	end
 end
+
 
 # post 'sign-in' do
 
