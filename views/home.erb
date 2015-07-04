@@ -8,23 +8,36 @@
   <div id="container">
   <header>
     <div id="bar">
-      <ul>
+     <!--  <ul>
         <li><a href="register">Register</a></li>
         <li><a href="sign_in">Sign In</a></li>
-        <li><a href="sign_out">Sign Out</a></li>
+        <li><a href="sign_out">Sign Out</a></li> -->
     </div>
   </header>
+
+   
+ 
   
     <div id="leftside">
-      <div id="box1">
-      </div>
-      <div id="box2">
-      </div>
-      <div id="box3">
-      </div>
-      <div id="box4">
-      </div>
-      <div id="box5">
+
+      <div id="leftside-up">
+
+        <h2>Sign In</h2>
+        <form method="POST" action="/login">
+        <input type='text' placeholder="email" id="email"> 
+        <hr>
+        <input type='password' placeholder="password" id="password">
+        <input type='submit' id="submit">
+        </form>
+        </div>
+
+      <div id="leftside-down"> 
+      <h6><em>not a member?</em></h6> 
+        <h2>Register</h2>
+        <form method="POST" action="/login">
+        <input type='submit' placeholder="click here" id="submit">
+        </form>
+        
       </div>
     </div>
     

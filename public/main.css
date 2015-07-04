@@ -52,6 +52,53 @@ header {
     border: 1px solid black;
   }
 
+    #leftside-up{
+      border: 1px solid black;
+    }
+        #email {
+        width: 60%;
+        margin: 10px;
+        height: 20px;
+        border: 1px solid black;
+        padding: 3px;
+      }
+
+        #password {
+        width: 60%;
+        margin: 10px;
+        height: 20px;
+        padding: 3px;
+        border: 1px solid black;
+        
+      }
+      #submit {
+        width: 80%;
+        margin: 10px;
+        height: 40px;
+        padding: 3px;
+        background-color: orange;
+        border: 1px solid black;
+      }
+
+    #leftside-down {
+      margin-top: 20px;
+      height: 500px;
+      border: 1px solid black;
+    }
+
+      #register {
+        width: 60%;
+        margin: 10px;
+        height: 20px;
+        padding: 3px;
+        border: 1px solid black;
+
+      }
+
+    h2 {
+      text-align: center;
+    }
+
   #box6, #box7, #box8, #box9, #box10 {
     width: 80%;
     margin: 40px;
@@ -68,4 +115,14 @@ header {
   border: 1px solid black;
   clear: both;
 }
+
+/*create tweet */
+#tweet_box {
+  width: 80%;
+  height: 300px;
+  border: 1px solid black;
+  margin: 100px;
+}
+
+
 
