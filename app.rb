@@ -30,7 +30,7 @@ post '/register' do
 			redirect "/home"
 		else
 			flash[:notice] = "That user name already exists. Please try another"
-			redirect "/home"
+			redirect "/"
 		end
 	else
 		flash[:notice] = "Passwords did not match. Please try again."
