@@ -8,18 +8,18 @@ require './models'
 
 configure(:development) {set :database,"sqlite3:microblog_db.sqlite3"}
 
-User.create(:user_name => "tom", :password => "tom", :first_name => "Thomas", :last_name => "Smith", :email => "tom@tom.com", :created => DateTime.now, :modified => DateTime.now)
-User.create(:user_name => "bob", :password => "bob", :first_name => "Thomas", :last_name => "Smith", :email => "bob@bob.com", :created => DateTime.now, :modified => DateTime.now)
-User.create(:user_name => "joe", :password => "joe", :first_name => "Thomas", :last_name => "Smith", :email => "joe@joe.com", :created => DateTime.now, :modified => DateTime.now)
+User.create(:user_name => "tom", :password => "tom", :first_name => "Thomas", :last_name => "Smith", :email => "tom@tom.com", :created_at => DateTime.now, :updated_at => DateTime.now)
+User.create(:user_name => "bob", :password => "bob", :first_name => "Thomas", :last_name => "Smith", :email => "bob@bob.com", :created_at => DateTime.now, :updated_at => DateTime.now)
+User.create(:user_name => "joe", :password => "joe", :first_name => "Thomas", :last_name => "Smith", :email => "joe@joe.com", :created_at => DateTime.now, :updated_at => DateTime.now)
 
-Group.create(:group_name => "cool people", :about => "a group for cool people", :created => DateTime.now, :modified => DateTime.now)
-Group.create(:group_name => "geeky people", :about => "a group for geeky people", :created => DateTime.now, :modified => DateTime.now)
+Group.create(:group_name => "cool people", :about => "a group for cool people", :created_at => DateTime.now, :updated_at => DateTime.now)
+Group.create(:group_name => "geeky people", :about => "a group for geeky people", :created_at => DateTime.now, :updated_at => DateTime.now)
 
-Post.create(:user_id => 1, :content => "Lol", :created => DateTime.now, :modified => DateTime.now)
-Post.create(:user_id => 2, :content => "lul", :created => DateTime.now, :modified => DateTime.now)
-Post.create(:user_id => 2, :content => "rofl", :created => DateTime.now, :modified => DateTime.now)
-Post.create(:user_id => 3, :content => "wut", :created => DateTime.now, :modified => DateTime.now)
-Post.create(:user_id => 4, :content => "lmao", :created => DateTime.now, :modified => DateTime.now)
+Post.create(:user_id => 1, :content => "Lol", :created_at => DateTime.now, :updated_at => DateTime.now)
+Post.create(:user_id => 2, :content => "lul", :created_at => DateTime.now, :updated_at => DateTime.now)
+Post.create(:user_id => 2, :content => "rofl", :created_at => DateTime.now, :updated_at => DateTime.now)
+Post.create(:user_id => 3, :content => "wut", :created_at => DateTime.now, :updated_at => DateTime.now)
+Post.create(:user_id => 4, :content => "lmao", :created_at => DateTime.now, :updated_at => DateTime.now)
 
 testuser1 = User.find(1)
 testuser2 = User.find(2)

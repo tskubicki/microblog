@@ -6,22 +6,19 @@ class InitialSchemaSetup < ActiveRecord::Migration
 		t.string :first_name
 		t.string :last_name
 		t.string :email
-		t.datetime :created
-		t.datetime :modified
+		t.timestamps null: false
 	end
 	
 	create_table :posts do |t|
 		t.integer :user_id
 		t.string :content
-		t.datetime :created
-		t.datetime :modified
+		t.timestamps null: false
 	end
 	
 	create_table :groups do |t|
 		t.string :group_name
 		t.string :about
-		t.datetime :created
-		t.datetime :modified
+		t.timestamps null: false
 	end
 	
 	create_table :groups_users, id: false do |t|

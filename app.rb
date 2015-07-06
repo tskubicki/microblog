@@ -1,7 +1,6 @@
-require 'sinatra'
-require 'sinatra/reloader'
-require 'sinatra/activerecord'
 require 'bundler/setup'
+require 'sinatra'
+require 'sinatra/activerecord'
 require 'rack-flash'
 require './models'
 
@@ -24,14 +23,20 @@ end
 post '/register' do
 	@new_user = params[:post] #prepended hash
 	#function to sanity-check input, execute add user on success
-	if !User.exists?(user_name: @new_user[:user_name])
-		User.create(params[:post])
-		flash[:notice] = "Success! You may log in now"
-		redirect "/signin"
+	if (@new_user[:password] == params[:confirm_password])
+		if !User.exists?(user_name: @new_user[:user_name])
+			User.create(params[:post])
+			flash[:notice] = "Success! You may log in now"
+			redirect "/signin"
+		else
+			flash[:notice] = "That user name already exists. Please try another"
+			redirect "/register"
+		end
 	else
-		flash[:notice] = "That user name already exists. Please try another"
+		flash[:notice] = "Passwords did not match. Please try again."
 		redirect "/register"
 	end
+	
 	# confirmation = params[:confirm_password]
 	
 	# if confirmation == params[:user][:password]
@@ -48,16 +53,16 @@ end
 
 post '/signin' do
 	@signin = params[:post] #prepended hash
-	@db_record = User.where(user_name: @signin[:user_name])
+	@db_record = User.find_by(user_name: @signin[:user_name])
 	#function to sanity-check input, execute add user on success
 	
-	#check db_record if it got anything from the User.where ...  Then, check password
-	if (@db_record != []) && (@signin[:password] == @db_record.password)
+	# check db_record if it got anything from the User.where ...  Then, check password
+	if (@db_record != nil) && (@signin[:password] == @db_record.password)
 		session[:user_id] = @db_record.id
 		redirect "/profile/#{current_user.user_name}"
-		puts "YAAAAAAA"
 	else
-		puts "BOOOOOO"
+		flash[:notice] = "Incorrect login. Please try again."
+		redirect "/signin"
 	end
 	
 end
@@ -69,14 +74,38 @@ get '/feed' do
 	erb :feed
 end
 
-get '/profile/:user_id' do
-	@current_page = 'profile'
+get '/profile/:user_id' do 
+	@current_user = current_user
+	#@current_page = 'profile'
 	erb :profile
 end
 
 get '/create_tweet' do
 	@current_page = 'create_tweet'
 	erb :create_tweet
+end
+
+get '/signout' do
+	session[:user_id] = nil
+	flash[:notice] = "You have been signed out. Come back soon!"
+	redirect "/signin"
+end
+
+get '/profile/:user_id/edit' do
+	erb :edit
+end
+
+post '/profile/:user_id/delete' do
+	User.destroy(current_user)
+	session[:user_id] = nil
+	flash[:notice] = "Account deleted"
+	redirect "/signin"
+end
+
+post '/profile/:user_id/edit' do
+	current_user.update(params[:post])
+	flash[:notice] = "You changes were saved"
+	redirect "/profile/#{current_user.user_name}"
 end
 
 def current_user

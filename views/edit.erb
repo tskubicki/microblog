@@ -16,3 +16,11 @@
 	<p>Password: <%= current_user.password %></p>
 </div>
 
+
+
+
+<form method="POST" action="/profile/<%= current_user.user_name %>/delete">
+	<p>Delete</p>
+	<input type="submit">
+</form>
+<p>this button should prompt you for confirmation before deleting</p>

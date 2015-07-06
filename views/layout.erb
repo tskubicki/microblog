@@ -20,6 +20,10 @@
 					<a href="/signout">sign out</a>
 					<a href="<%= current_user.user_name %>/edit">Edit Account</a>
 				<% end %>
+				<% if !session[:user_id]%>
+					<a href="/register">Register</a>
+					<a href="/signin">Sign In</a>
+				<% end %>
 			</div>
 		</div>
 		<div class="site-wrapper">
