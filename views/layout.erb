@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
- <title><%= @title || "My site" %> </title>
 
- <link rel="stylesheet" type="text/css" href="main.css">
+	<head>
+		<title><%= @title || "My site" %> </title>
+		<link rel="stylesheet" type="text/css" href="/styles/styles.css">
+		<script src="/js/main.js"></script>
+	</head>
 
-</head>
-
-<body class=<%= @current_page %>>
-
-
- <%= yield %>
-
-</body>
-
-  
-
+	<body class=<%= @current_page %>>
+		<% if flash[:notice]%>
+			<div>
+				<%=flash[:notice] %>
+			</div>
+		<% end %>
+		<div class="top-bar">
+			TWEETERBOOKGRAM
+			<div class="top-bar-buttons">
+				<% if session[:user_id]%>
+					<a href="/signout">sign out</a>
+					<a href="<%= current_user.user_name %>/edit">Edit Account</a>
+				<% end %>
+			</div>
+		</div>
+		<div class="site-wrapper">
+			<%= yield %>
+		</div>
+	</body>
+	
 </html>
