@@ -27,10 +27,10 @@ post '/register' do
 		if !User.exists?(user_name: @new_user[:user_name])
 			User.create(params[:post])
 			flash[:notice] = "Success! You may log in now"
-			redirect "/signin"
+			redirect "/home"
 		else
 			flash[:notice] = "That user name already exists. Please try another"
-			redirect "/register"
+			redirect "/home"
 		end
 	else
 		flash[:notice] = "Passwords did not match. Please try again."
@@ -62,7 +62,7 @@ post '/signin' do
 		redirect "/profile/#{current_user.user_name}"
 	else
 		flash[:notice] = "Incorrect login. Please try again."
-		redirect "/signin"
+		redirect "/"
 	end
 	
 end
