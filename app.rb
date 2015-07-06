@@ -12,7 +12,7 @@ use Rack::Flash, :sweep => true
 get '/' do
 	#@title = "home"
 	#@current_page = 'home'
-	redirect "/signin"
+	erb :home
 end
 
 get '/register' do
@@ -67,7 +67,6 @@ post '/signin' do
 	
 end
 
-
 get '/feed' do
 	@title = 'feed'
 	@current_page = 'feed'
@@ -75,7 +74,7 @@ get '/feed' do
 end
 
 get '/profile/:user_id' do 
-	@current_user = current_user
+	@current_user = User.find_by(user_name: current_user.user_name)
 	#@current_page = 'profile'
 	erb :profile
 end
