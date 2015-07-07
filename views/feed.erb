@@ -1,6 +1,5 @@
 <div class="feed">
 <% @posts.each do |p| %>
-	<%= p.content %>
-	<%= p.created_at %>
+	<p><%= p.content %> <%= p.created_at %></p>
 <% end %>
 <div>

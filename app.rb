@@ -47,10 +47,6 @@ post '/register' do
 	# end
 end
 
-get '/signin' do
-	erb :signin
-end
-
 post '/signin' do
 	@signin = params[:post] #prepended hash
 	@db_record = User.find_by(user_name: @signin[:user_name])
@@ -70,7 +66,7 @@ end
 get '/feed' do
 	# @title = 'feed'
 	# @current_page = 'feed'
-	@posts = Post.find(current_user.id).posts
+	@posts = Post.order('created_at DESC').limit(10)
 	erb :feed
 end
 
@@ -89,7 +85,7 @@ end
 get '/signout' do
 	session[:user_id] = nil
 	flash[:notice] = "You have been signed out. Come back soon!"
-	redirect "/signin"
+	redirect "/"
 end
 
 get '/profile/:user_id/edit' do
@@ -100,7 +96,7 @@ post '/profile/:user_id/delete' do
 	User.destroy(current_user)
 	session[:user_id] = nil
 	flash[:notice] = "Account deleted"
-	redirect "/signin"
+	redirect "/"
 end
 
 post '/profile/:user_id/edit' do
