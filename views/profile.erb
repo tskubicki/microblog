@@ -62,7 +62,10 @@
     <div id="rightside">
       <h3> User post </h3>
       <div id="box6">
-        <%= current_user.posts %>
+        <% @posts.each do |p| %>
+			<%= p.content %>
+			<%= p.created_at %>
+		<% end %>
 
       </div>
       

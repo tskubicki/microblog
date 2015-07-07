@@ -75,6 +75,7 @@ end
 
 get '/profile/:user_id' do 
 	@current_user = User.find_by(user_name: current_user.user_name)
+	@posts = @current_user.posts
 	#@current_page = 'profile'
 	erb :profile
 end
@@ -118,6 +119,11 @@ post '/newpost' do
 		content: params[:message])
 	flash[:notice] = "You just created a post"
 	redirect "/profile/#{current_user.user_name}"
+end
+
+get '/posts' do
+	@posts = Posts.find(created_on < 10.days.ago)
+	puts @posts
 end
 
 
