@@ -82,7 +82,7 @@ header {
 
     #leftside-down {
       margin-top: 20px;
-      height: 500px;
+      height: 300px;
       border: 1px solid black;
     }
 
@@ -145,5 +145,16 @@ header {
 	background-color: #69ff69;
 }
 
+/*here starts profile*/
+#signout {
+  margin: 20px;
+  background-color: pink;
+}
 
+.message-box{
+  outline: none;
+  border-radius:4px;
+  padding:3px;
+  margin: 4px 0 10px 0;
+}
 

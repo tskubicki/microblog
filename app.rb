@@ -27,7 +27,7 @@ post '/register' do
 		if !User.exists?(user_name: @new_user[:user_name])
 			User.create(params[:post])
 			flash[:notice] = "Success! You may log in now"
-			redirect "/home"
+			redirect "/"
 		else
 			flash[:notice] = "That user name already exists. Please try another"
 			redirect "/"
@@ -111,6 +111,13 @@ def current_user
 	if session[:user_id]
 		@current_user = User.find(session[:user_id])
 	end
+end
+
+post '/newpost' do
+	Post.create(user_id: current_user.id, 
+		content: params[:message])
+	flash[:notice] = "You just created a post"
+	redirect "/profile/#{current_user.user_name}"
 end
 
 

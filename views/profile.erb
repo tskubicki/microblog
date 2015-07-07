@@ -1,1 +1,71 @@
-profile
+<body>
+  <div id="container">
+  <header>
+    <div id="bar">
+     
+    </div>
+  </header>
+
+   
+ 
+  
+    <div id="leftside">
+
+      <div id="leftside-up">
+
+        <h2>Your profile</h2>
+          <% if session[:user_id]%>
+            <div id="signout">
+            <a href="/signout">sign out</a>
+            </div>
+
+          <a href="<%= current_user.user_name %>/edit">Edit Account</a>
+        <% end %>
+
+        <!-- <form method="POST" action="/signin">
+
+        <input type='text' name="[post]user_name" placeholder="Username" id="email"> 
+        <hr>
+        <input type='password' name="[post]password" placeholder="Password" id="password">
+        <input type='submit' id="submit">
+        </form>
+        </div> -->
+
+      <div id="leftside-down"> 
+      <h6><em>not a member?</em></h6> 
+        <h2>Register</h2>
+        <div style="background-color:pink">
+        <p>Username: <%= current_user.user_name %></p>
+        <p>First Name: <%= current_user.first_name %></p>
+        <p>Last Name: <%= current_user.last_name %></p>
+        <p>Email: <%= current_user.email %></p>
+      </div>
+              <!-- <form method="POST" action="/register">
+      <input type="text" name="[post]user_name" placeholder="Username" id="email"><br>
+      <input type="text" name="[post]first_name" placeholder="First Name" id="email"><br>
+      <input type="text" name="[post]last_name" placeholder="Last Name"id="email"><br>
+      <input type="text" name="[post]email" placeholder="Email" id="email"><br>
+    
+    </form> -->
+      </div>
+      <div id="leftside-down">
+        <h2>Please write your post</h2>
+        <br>
+        <form method="POST" action="/newpost">
+        <textarea class="message-box" wrap="off" cols="40" rows="5" name="message" placeholder="Enter your message"></textarea> 
+        <input type='submit' id="submit">
+      </form>
+      </div>
+    </div>
+    
+
+    <div id="rightside">
+      <h3> User post </h3>
+      <div id="box6">
+        <%= current_user.posts %>
+
+      </div>
+      
+      
+    </div>
+  </div>  
