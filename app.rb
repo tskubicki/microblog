@@ -68,8 +68,9 @@ post '/signin' do
 end
 
 get '/feed' do
-	@title = 'feed'
-	@current_page = 'feed'
+	# @title = 'feed'
+	# @current_page = 'feed'
+	@posts = Post.find(current_user.id).posts
 	erb :feed
 end
 
@@ -120,12 +121,6 @@ post '/newpost' do
 	flash[:notice] = "You just created a post"
 	redirect "/profile/#{current_user.user_name}"
 end
-
-get '/posts' do
-	@posts = Posts.find(created_on < 10.days.ago)
-	puts @posts
-end
-
 
 
 
